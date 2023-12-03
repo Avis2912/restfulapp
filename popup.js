@@ -77,26 +77,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function run_restful_app(seconds, hours) {
       const overlayDiv = document.createElement('div');
-      overlayDiv.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background-color:transparent;z-index:999999;opacity:0;transition:opacity 2s ease-in-out;';
+      overlayDiv.style.cssText = 'pointer-events: none;position:fixed;top:0;left:0;width:100%;height:100%;background-color:transparent;z-index:999999;opacity:0;transition:opacity 2s ease-in-out;';
       
       const colorOverlay = document.createElement('div');
-      colorOverlay.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;z-index:9999999;opacity:0.2;transition:opacity 1s;';
+      colorOverlay.style.cssText = 'pointer-events: none;position:fixed;top:0;left:0;width:100%;height:100%;z-index:9999999;opacity:0.2;transition:opacity 1s;';
 
       const textOverlay = document.createElement('div');
-      textOverlay.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;z-index:99999999;opacity:1;background-color:transparent;transition:opacity 1.8s;';
+      textOverlay.style.cssText = 'pointer-events: none;position:fixed;top:0;left:0;width:100%;height:100%;z-index:99999999;opacity:1;background-color:transparent;transition:opacity 1.8s;';
 
       const centerText = document.createElement('h1');
-      centerText.style.cssText = 'color:#FFF;text-align:center;font-family:Futura;font-size:120px;font-style:light;font-weight:100;line-height:normal;position:absolute;letter-spacing:8px;top:48%;left:50%;transform:translate(-50%, -50%);opacity:0.8;';
+      centerText.style.cssText = 'pointer-events: none;color:#FFF;text-align:center;font-family:Futura;font-size:120px;font-style:light;font-weight:100;line-height:normal;position:absolute;letter-spacing:8px;top:48%;left:50%;transform:translate(-50%, -50%);opacity:0.8;';
 
       const centerText2 = document.createElement('h1');
-      centerText2.style.cssText = 'color:#FFF;text-align:center;font-family:Fantasy;font-size:25px;font-style:light;font-weight:600;line-height:normal;position:relative;letter-spacing:1px; top:-20px; left:0%;transform:translate(0%, 0%);opacity:0.8;';
+      centerText2.style.cssText = 'pointer-events: none;color:#FFF;text-align:center;font-family: serif;font-size:25px;font-style:light;font-weight:600;line-height:normal;position:relative;letter-spacing:1px; top:-20px; left:2%;transform:translate(0%, 0%);opacity:0.8;';
 
       const bottomText = document.createElement('div');
-      bottomText.style.cssText = 'color:#FFF;text-align:center;font-family:"Italiana", sans-serif;font-size:22px;font-style:light;font-weight:100;line-height:normal;position:absolute;letter-spacing:4px;top:93%;left:50%;transform:translate(-50%, -50%);opacity:0.6;';
+      bottomText.style.cssText = 'pointer-events: none;color:#FFF;text-align:center;font-family:"Italiana", sans-serif;font-size:22px;font-style:light;font-weight:100;line-height:normal;position:absolute;letter-spacing:4px;top:93%;left:50%;transform:translate(-50%, -50%);opacity:0.6;';
       bottomText.textContent = 'PRESS ENTER TO QUIT'; // Add the text you want to display
 
       const mainCountdownElement = document.createElement('div');
-      mainCountdownElement.style.cssText = 'color:#FFF;text-align:center;font-family:Palatino;font-size:26px;font-style:light;font-weight:100;line-height:normal;position:absolute;letter-spacing:0px;top:8%;left:5%;opacity:0.6;transform:translate(-50%, -50%);';
+      mainCountdownElement.style.cssText = 'pointer-events: none; color:#FFF;text-align:center;font-family:Palatino;font-size:26px;font-style:light;font-weight:100;line-height:normal;position:absolute;letter-spacing:0px;top:8%;left:5%;opacity:0.6;transform:translate(-50%, -50%);';
 
       const Texts = {
         'CLOSE': 'Your Eyes. Focus On The Moment.', 
@@ -124,34 +124,42 @@ document.addEventListener("DOMContentLoaded", () => {
 
       //SnUBb-FAlCY
     };
-      const colorKeys = Object.keys(IDs);
-      const randomColorKey = colorKeys[Math.floor(Math.random() * colorKeys.length)];
-      colorOverlay.style.backgroundColor = randomColorKey;
-      const youtubeVideoId = IDs[randomColorKey];
-      const start = 0;
+      // const colorKeys = Object.keys(IDs);
+      // const randomColorKey = colorKeys[Math.floor(Math.random() * colorKeys.length)];
+      // colorOverlay.style.backgroundColor = randomColorKey;
+      // const youtubeVideoId = IDs[randomColorKey];
+      // const start = 0;
 
-      const youtubeIframe = document.createElement('iframe');
-      youtubeIframe.src = `https://www.youtube.com/embed/${youtubeVideoId}?autoplay=1&mute=1&loop=1&controls=0&vq=hd1080&playlist=${youtubeVideoId}&start=${start}`;
-      youtubeIframe.allowFullscreen = true;
-      youtubeIframe.style.cssText = 'width:1920px;height:1080px;';
+      // const youtubeIframe = document.createElement('iframe');
+      // youtubeIframe.src = `https://www.youtube.com/embed/${youtubeVideoId}?autoplay=1&mute=1&loop=1&controls=0&vq=hd1080&playlist=${youtubeVideoId}&start=${start}`;
+      // youtubeIframe.allowFullscreen = true;
+      // youtubeIframe.style.cssText = 'width:1920px;height:1080px;';
 
-      overlayDiv.appendChild(youtubeIframe);
 
+      overlayDiv.style.backgroundSize = 'cover';
+      overlayDiv.style.backgroundRepeat = 'no-repeat';
+      overlayDiv.style.backgroundPosition = 'center';
+      colorOverlay.style.backgroundColor = "green";
+      
+      overlayDiv.style.backgroundImage = "url('https://images.pexels.com/photos/906097/pexels-photo-906097.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2')";
+      
+      
+      // overlayDiv.style.backgroundImage = "url(https://i.redd.it/t65h5m1ckjk51.jpg)"
       const carrier = document.createElement('div');
-      carrier.style.cssText = 'position:fixed;top:70px;right:-130px;width:120px;height:60px;z-index:999999;background-color: #46917d;border-top-left-radius:50px;border-bottom-left-radius:50px;transition:right 1.8s;';
+      carrier.style.cssText = 'pointer-events: none;position:fixed;top:70px;right:-130px;width:120px;height:60px;z-index:999999;background-color: #46917d;border-top-left-radius:50px;border-bottom-left-radius:50px;transition:right 1.8s;';
 
       const carrier2 = document.createElement('div');
-      carrier2.style.cssText = 'position:absolute;top:5.245px;right:-6px;width:120px;height:50px;z-index:9999999;background-color:#5DC6AC;border-top-left-radius:50px;border-bottom-left-radius:50px;transition:right 2s;';
+      carrier2.style.cssText = 'pointer-events: none;position:absolute;top:5.245px;right:-6px;width:120px;height:50px;z-index:9999999;background-color:#5DC6AC;border-top-left-radius:50px;border-bottom-left-radius:50px;transition:right 2s;';
 
       const countdownElement = document.createElement('div');
-      countdownElement.style.cssText = 'position:absolute;top:53%;left:35px;transform:translate(-50%, -50%);font-size:32px;z-index:99999999;color:white;padding-bottom:4px;font-weight:800;font-family:serif;';
+      countdownElement.style.cssText = 'pointer-events: none;position:absolute;top:53%;left:35px;transform:translate(-50%, -50%);font-size:32px;z-index:99999999;color:white;padding-bottom:4px;font-weight:800;font-family:serif;';
 
       const countdownElement2 = document.createElement('div');
-      countdownElement2.style.cssText = 'position:absolute;top:37.5%;left:60px;transform:translate(-14%, -50%);font-size:13px;z-index:999999999;color:white;padding-bottom:5px;font-weight:400;font-family:serif;';
+      countdownElement2.style.cssText = 'pointer-events: none;position:absolute;top:37.5%;left:60px;transform:translate(-14%, -50%);font-size:13px;z-index:999999999;color:white;padding-bottom:5px;font-weight:400;font-family:serif;';
       countdownElement2.textContent = "time to";
 
       const countdownElement3 = document.createElement('div');
-      countdownElement3.style.cssText = 'position:absolute;top:62.5%;left:60px;transform:translate(-14%, -50%);font-size:13px;z-index:999999999;color:white;padding-bottom:0px;font-weight:400;font-family:serif;';
+      countdownElement3.style.cssText = 'pointer-events: none;position:absolute;top:62.5%;left:60px;transform:translate(-14%, -50%);font-size:13px;z-index:999999999;color:white;padding-bottom:0px;font-weight:400;font-family:serif;';
       countdownElement3.textContent = "ready up";
 
       overlayDiv.append(colorOverlay);

@@ -82,6 +82,7 @@ function run_restful_app(seconds, hours) {
             overlayDiv.style.height = '100%';
             overlayDiv.style.backgroundColor = 'transparent';
             overlayDiv.style.zIndex = '999999';
+            overlayDiv.style.pointerEvents = 'none';
             overlayDiv.style.opacity = '0'; // Opacity set to 10%
             overlayDiv.style.transition = 'opacity 2s ease-in-out';  // 1s transition for opacity
 
@@ -95,6 +96,7 @@ function run_restful_app(seconds, hours) {
             colorOverlay.style.backgroundColor = 'blue';
             colorOverlay.style.opacity = '0.2'; 
             colorOverlay.style.transition = 'opacity 1s'; 
+            colorOverlay.style.pointerEvents = 'none';
 
             const textOverlay = document.createElement('div');
             textOverlay.style.position = 'fixed';
@@ -106,7 +108,7 @@ function run_restful_app(seconds, hours) {
             textOverlay.style.opacity = '1'; 
             textOverlay.style.backgroundColor = 'transparent';
             textOverlay.style.transition = 'opacity 1.8s'; 
-
+            textOverlay.style.pointerEvents = 'none';
 
             const centerText = document.createElement('h1');
             centerText.className="my";
@@ -124,11 +126,12 @@ function run_restful_app(seconds, hours) {
             centerText.style.left = '50%';
             centerText.style.transform = 'translate(-50%, -50%)';
             centerText.style.opacity = "0.8";
+            centerText.style.pointerEvents = 'none';
 
             const centerText2 = document.createElement('h1');
             centerText2.style.color = '#FFF';
             centerText2.style.textAlign = 'center';
-            centerText2.style.fontFamily = "Fantasy"; //georgia, palatino, fantasy, didot, 
+            centerText2.style.fontFamily = "serif"; //georgia, palatino, fantasy, didot, 
             centerText2.style.fontSize = '25px';
             centerText2.style.fontStyle = 'light';
             centerText2.style.fontWeight = '600';
@@ -139,6 +142,7 @@ function run_restful_app(seconds, hours) {
             centerText2.style.left = '0%';
             centerText2.style.transform = 'translate(0%, 0%)';
             centerText2.style.opacity = "0.8";
+            centerText2.style.pointerEvents = 'none';
 
             const bottomText = document.createElement('div');
             bottomText.textContent = 'PRESS ENTER TO SKIP';
@@ -155,6 +159,7 @@ function run_restful_app(seconds, hours) {
             bottomText.style.left = '50%';
             bottomText.style.transform = 'translate(-50%, -50%)';
             bottomText.style.opacity = "0.6";
+            bottomText.style.pointerEvents = 'none';
 
             const mainCountdownElement = document.createElement('div');
             mainCountdownElement.textContent = '10';
@@ -171,6 +176,7 @@ function run_restful_app(seconds, hours) {
             mainCountdownElement.style.left = '5%';
             mainCountdownElement.style.opacity = "0.6";
             mainCountdownElement.style.transform = 'translate(-50%, -50%)';
+            mainCountdownElement.style.pointerEvents = 'none';
 
             const Texts = {
               'BLINK': 'Five Times In Slow Succession',
@@ -198,25 +204,44 @@ function run_restful_app(seconds, hours) {
              'black': '3FHTPADy3QU', //'zmKK7Wxe22k',
               'darkred': 'OdT7niw9w7M',
               'green': '0-jUHUz_swY',
-              'black': 'FslCeCp1GqM',
-              
-
-            // night waves, night stuff, beach waves, forest
+              'black': 'FslCeCp1GqM', 
             };
 
-            const colorKeys = Object.keys(IDs);
-            const randomColorKey = colorKeys[Math.floor(Math.random() * colorKeys.length)];
-            
-            colorOverlay.style.backgroundColor = randomColorKey;
-            const youtubeVideoId = IDs[randomColorKey];
-            
-            const youtubeIframe = document.createElement('iframe');
-            youtubeIframe.src = `https://www.youtube.com/embed/${youtubeVideoId}?autoplay=1&mute=1&loop=1&controls=0&vq=hd1080&playlist=${youtubeVideoId}`;
-            youtubeIframe.allowFullscreen = true;
-            youtubeIframe.style.width = '1920px';
-            youtubeIframe.style.height = '1080px';
+            const Images = {
+              'green' : "url('https://images.pexels.com/photos/906097/pexels-photo-906097.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2')",
+              'blue' : "url('https://images.pexels.com/photos/1291765/pexels-photo-1291765.jpeg?auto=compress&cs=tinysrgb&w=1200&lazy=load')",
+              'black' : "url('https://images.pexels.com/photos/772476/pexels-photo-772476.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2')",
+              'black' : "url('https://images.pexels.com/photos/3689659/pexels-photo-3689659.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2')",
+              'brown' : "url('https://images.pexels.com/photos/1509582/pexels-photo-1509582.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2')",
+              'darkred' : "url('https://images.pexels.com/photos/221502/pexels-photo-221502.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2')",
+              'cyan' : "url('https://images.pexels.com/photos/2681631/pexels-photo-2681631.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2')",
+              'darkgreen' : "url('https://images.pexels.com/photos/633951/pexels-photo-633951.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2')",
+              'brown' : "url('https://images.pexels.com/photos/592284/pexels-photo-592284.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2')"      
+           }
 
-            overlayDiv.appendChild(youtubeIframe);
+            const colorsKeys = Object.keys(Images);
+            const randomKey = colorsKeys[Math.floor(Math.random() * colorsKeys.length)];
+            const backgroundImageUrl = Images[randomKey]; // Get the URL for the background image
+
+            overlayDiv.style.backgroundSize = 'cover';
+            overlayDiv.style.backgroundRepeat = 'no-repeat';
+            overlayDiv.style.backgroundPosition = 'center';
+
+            overlayDiv.style.backgroundImage = backgroundImageUrl; 
+
+            // const colorKeys = Object.keys(IDs);
+            // const randomColorKey = colorKeys[Math.floor(Math.random() * colorKeys.length)];
+            // colorOverlay.style.backgroundColor = randomColorKey;
+            // const youtubeVideoId = IDs[randomColorKey];
+            
+            // const youtubeIframe = document.createElement('iframe');
+            // youtubeIframe.src = `https://www.youtube.com/embed/${youtubeVideoId}?autoplay=1&mute=1&loop=1&controls=0&vq=hd1080&playlist=${youtubeVideoId}`;
+            // youtubeIframe.allowFullscreen = true;
+            // youtubeIframe.style.width = '1920px';
+            // youtubeIframe.style.height = '1080px';
+            // youtubeIframe.style.pointerEvents = 'none';
+
+            // overlayDiv.appendChild(youtubeIframe);
 
 
             const carrier = document.createElement('div');
@@ -230,6 +255,7 @@ function run_restful_app(seconds, hours) {
             carrier.style.borderTopLeftRadius = "50px";
             carrier.style.borderBottomLeftRadius = "50px";
             carrier.style.transition = 'right 1.8s';  // 1s transition for opacity
+            carrier.style.pointerEvents = 'none';
 
             const carrier2 = document.createElement('div');
             carrier2.style.position = 'absolute';
@@ -238,10 +264,11 @@ function run_restful_app(seconds, hours) {
             carrier2.style.width = '120px';
             carrier2.style.height = '50px';
             carrier2.style.zIndex = '9999999';
-            carrier2.style.backgroundColor = '#5AAF93';
+            carrier2.style.backgroundColor = '#59BD9C';
             carrier2.style.borderTopLeftRadius = "50px";
             carrier2.style.borderBottomLeftRadius = "50px";
             carrier2.style.transition = 'right 2s';  
+            carrier2.style.pointerEvents = 'none';
 
             const countdownElement = document.createElement('div');
             countdownElement.style.position = 'absolute';
@@ -254,7 +281,7 @@ function run_restful_app(seconds, hours) {
             countdownElement.style.paddingBottom = '4px';
             countdownElement.style.fontWeight = '800';
             countdownElement.style.fontFamily = 'serif';
-
+            countdownElement.style.pointerEvents = 'none';
 
             const countdownElement2 = document.createElement('div');
             countdownElement2.style.position = 'absolute';
@@ -268,6 +295,7 @@ function run_restful_app(seconds, hours) {
             countdownElement2.style.fontWeight = '400';
             countdownElement2.style.fontFamily = 'serif';
             countdownElement2.textContent = "take a";
+            countdownElement2.style.pointerEvents = 'none';
 
             const countdownElement3 = document.createElement('div');
             countdownElement3.style.position = 'absolute';
@@ -281,7 +309,7 @@ function run_restful_app(seconds, hours) {
             countdownElement3.style.fontWeight = '400';
             countdownElement3.style.fontFamily = 'serif';
             countdownElement3.textContent = "breather";
-
+            countdownElement3.style.pointerEvents = 'none';
       
             overlayDiv.append(colorOverlay);
             overlayDiv.append(textOverlay);
@@ -292,8 +320,10 @@ function run_restful_app(seconds, hours) {
             carrier.appendChild(countdownElement3);
 
             document.body.appendChild(carrier);
+            document.body.appendChild(overlayDiv);
+
             
-            
+ 
 
             // Countdown logic
             let fake = 7;
